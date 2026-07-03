@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useMutation, useServerFn } from "@tanstack/react-query";
-import { useServerFn as useServerFnRuntime } from "@tanstack/react-start";
+import { useServerFn } from "@tanstack/react-start";
 import { useEffect, useRef, useState } from "react";
 import { Camera, Upload, Loader2, Sparkles, Check, Lightbulb, X } from "lucide-react";
 import { AppShell } from "@/components/app/AppShell";
@@ -33,7 +32,7 @@ function CritiquePage() {
   const [uploading, setUploading] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const critiqueFn = useServerFnRuntime(runCritique);
+  const critiqueFn = useServerFn(runCritique);
 
   useEffect(() => {
     if (!file) {

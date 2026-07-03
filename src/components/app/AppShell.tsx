@@ -19,7 +19,12 @@ import { supabase } from "@/integrations/supabase/client";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 
-const nav = [
+const nav: Array<{
+  to: string;
+  label: string;
+  icon: typeof LayoutDashboard;
+  soon?: boolean;
+}> = [
   { to: "/dashboard", label: "Overview", icon: LayoutDashboard },
   { to: "/critique", label: "AI Critique", icon: Camera },
   { to: "/lessons", label: "Lessons", icon: BookOpen, soon: true },
@@ -27,7 +32,7 @@ const nav = [
   { to: "/gear", label: "Gear", icon: Sparkles, soon: true },
   { to: "/billing", label: "Billing", icon: CreditCard, soon: true },
   { to: "/settings", label: "Settings", icon: Settings, soon: true },
-] as const;
+];
 
 export function AppShell({
   children,

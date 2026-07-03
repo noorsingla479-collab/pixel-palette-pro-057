@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
-import { Camera, Sparkles, TrendingUp, Flame, ArrowRight } from "lucide-react";
+import { Camera, Sparkles, TrendingUp, Flame, ArrowRight, Trophy } from "lucide-react";
 import { AppShell } from "@/components/app/AppShell";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
@@ -226,5 +226,3 @@ function findWeakest(c: {
   return entries.reduce((min, cur) => (cur[1] < min[1] ? cur : min))[0];
 }
 
-// re-export local icon
-import { Trophy } from "lucide-react";
