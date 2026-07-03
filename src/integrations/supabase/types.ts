@@ -14,16 +14,180 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      photo_critiques: {
+        Row: {
+          background_score: number
+          color_score: number
+          composition_score: number
+          created_at: string
+          framing_score: number
+          id: string
+          lighting_score: number
+          model: string | null
+          overall_score: number
+          perspective_score: number
+          photo_id: string
+          practice_task: string | null
+          rule_applied: string | null
+          storytelling_score: number
+          strengths: string[]
+          subject_score: number
+          tips: string[]
+          user_id: string
+          weaknesses: string[]
+        }
+        Insert: {
+          background_score: number
+          color_score: number
+          composition_score: number
+          created_at?: string
+          framing_score: number
+          id?: string
+          lighting_score: number
+          model?: string | null
+          overall_score: number
+          perspective_score: number
+          photo_id: string
+          practice_task?: string | null
+          rule_applied?: string | null
+          storytelling_score: number
+          strengths?: string[]
+          subject_score: number
+          tips?: string[]
+          user_id: string
+          weaknesses?: string[]
+        }
+        Update: {
+          background_score?: number
+          color_score?: number
+          composition_score?: number
+          created_at?: string
+          framing_score?: number
+          id?: string
+          lighting_score?: number
+          model?: string | null
+          overall_score?: number
+          perspective_score?: number
+          photo_id?: string
+          practice_task?: string | null
+          rule_applied?: string | null
+          storytelling_score?: number
+          strengths?: string[]
+          subject_score?: number
+          tips?: string[]
+          user_id?: string
+          weaknesses?: string[]
+        }
+        Relationships: [
+          {
+            foreignKeyName: "photo_critiques_photo_id_fkey"
+            columns: ["photo_id"]
+            isOneToOne: false
+            referencedRelation: "uploaded_photos"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string
+          display_name: string | null
+          id: string
+          plan: Database["public"]["Enums"]["subscription_plan"]
+          streak_days: number
+          updated_at: string
+          upload_count: number
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string
+          display_name?: string | null
+          id: string
+          plan?: Database["public"]["Enums"]["subscription_plan"]
+          streak_days?: number
+          updated_at?: string
+          upload_count?: number
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string
+          display_name?: string | null
+          id?: string
+          plan?: Database["public"]["Enums"]["subscription_plan"]
+          streak_days?: number
+          updated_at?: string
+          upload_count?: number
+        }
+        Relationships: []
+      }
+      uploaded_photos: {
+        Row: {
+          caption: string | null
+          created_at: string
+          height: number | null
+          id: string
+          storage_path: string
+          user_id: string
+          width: number | null
+        }
+        Insert: {
+          caption?: string | null
+          created_at?: string
+          height?: number | null
+          id?: string
+          storage_path: string
+          user_id: string
+          width?: number | null
+        }
+        Update: {
+          caption?: string | null
+          created_at?: string
+          height?: number | null
+          id?: string
+          storage_path?: string
+          user_id?: string
+          width?: number | null
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "user"
+      subscription_plan: "free" | "pro_monthly" | "pro_yearly" | "team"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +314,9 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "user"],
+      subscription_plan: ["free", "pro_monthly", "pro_yearly", "team"],
+    },
   },
 } as const
